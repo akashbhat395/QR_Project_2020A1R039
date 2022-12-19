@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qr Generator</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+
+        </ul>
+    </nav>
+    <h1 id="head">QR CODE GENERATOR</h1>
+    <div class="qrbox">
+        <form action="/send" method="post">
+            {% csrf_token %}
+            <input type="text" id="input" name="data" placeholder="Enter details here...">    
+            <button id="btn">Generate Qr Code</button>
+        </form>
+    </div>
+    <div id="QR">
+        {% if data %}
+        <a href="{% static 'image/test.png' %}" download>
+            <img src="{% static 'image/test.png' %}" id="qrcode" onclick="download()">
+        </a>
+        <h2 id="above" style="padding-left:600px;padding-top: 70px; font-size: 30px;">CLICK THE ABOVE QR CODE TO DOWNLOAD </h2>
+        {% else %}
+        <h1 id="error">Please Enter Data to Generate QR</h1>
+        <img src="{% static 'image/alert.png' %}" id="alert">
+        {% endif %}
+        </div>
+    </div>
+    <script>
+        function download(){
+            alert("QR CODE DOWNLOADED...")
+        }
+    </script>
+</body>
+</html>
+
+

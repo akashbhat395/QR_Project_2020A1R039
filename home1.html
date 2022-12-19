@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qr Generator</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li id="home"><a href="">Home</a></li>
+            <li ><a href="https://drive.google.com/drive/u/1/folders/1Zk66MDsxyo-dY6Cgyh2NyA0j9crRWcls" target="_blank">Documentations</a></li>
+            <li ><a href="https://github.com/Tanishgupta007/QR_CODE_GENERATOR">Source Code</a></li>
+            <li ><a href="/about">About Us</a></li>
+        </ul>
+    </nav>
+    <h1 id="head">QR CODE GENERATOR</h1>
+    <div class="qrbox">
+        <form action="/send" method="post">
+            {% csrf_token %}
+            <input type="text" id="input" name="data" placeholder="Enter details here...">    
+            <button id="btn">Generate Qr code</button>
+        </form>
+    </div>
+        <div id="QR">
+            {% if data %}
+                <img src="{% static 'image/test.png' %}" alt="" id="qrcode">
+            {% else %}
+                <h1 id="error">Please Enter Data to Generate QR</h1>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
